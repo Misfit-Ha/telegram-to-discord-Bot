@@ -1,9 +1,9 @@
-const DISCORD_ANNOUNCEMENTS_URL = 'https://discord.com/api/webhooks/954449835023560744/19u3_Si7Kt34yblgywe-tyXkRyE0sp38iVr4pWQ2P3juVOq-XdR7lTwZ6GFQqMW5WKJD';
-const DISCORD_PICTURES_URL = 'https://discord.com/api/webhooks/954450212603166721/yQZZCzVpDO38sATSk4ueg2BBGCnwELXiYHQEwrWyXyLEXA00LBPtYf7JS4cwBw449Arm';
-const TG_API_TOKEN = "5125687288:AAH9BxHIftqCS3x0u_NOVAvswfxZ1Vr_bVc"; 
+const DISCORD_ANNOUNCEMENTS_URL = 'https://discord.com/api/webhooks/3123954449835023560744/19u3_Si7Kt34yblgywe-tyXkRyE0ssadap38iVr4pWadOq-XdR7lTwZ6GFQqMW5WKJD';
+const DISCORD_PICTURES_URL = 'https://discord.com/api/webhooks/954450212603166721/yQZZCzVpDO38sATSk4ueg2BBGCnwasdiYHQEwrWyXyLEXA00LBPtYf7JS4cwBw449Arm';
+const TG_API_TOKEN = "512523212313687288:AAH9BxHIftqCSada3xad0u_NOdVAvasdwfxZ1Vr_bVc"; 
 const TG_API_URL = "https://api.telegram.org/bot" + TG_API_TOKEN;
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbySdjZr_msuMRh3A3sW5TwpnZpp5mOBg-PNp-lUyjXqrtJgqig/exec";
-//const CHAT_ID = "-1001765715367";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbySdjZr_adsadmsuMRh3A3sW5TwpnZpp5mOBg-PNp-lUyjXqrtJgqig/exec";
+//const CHAT_ID = "-100176513157156367";
 
 
 function setWebhook() {
