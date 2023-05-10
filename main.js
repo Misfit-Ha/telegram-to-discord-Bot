@@ -1,9 +1,14 @@
-const DISCORD_ANNOUNCEMENTS_URL = 'https://discord.com/api/webhooks/3123954449835023560744/19u3_Si7Kt34yblgywe-tyXkRyE0ssadap38iVr4pWadOq-XdR7lTwZ6GFQqMW5WKJD';
-const DISCORD_PICTURES_URL = 'https://discord.com/api/webhooks/954450212603166721/yQZZCzVpDO38sATSk4ueg2BBGCnwasdiYHQEwrWyXyLEXA00LBPtYf7JS4cwBw449Arm';
-const TG_API_TOKEN = "512523212313687288:AAH9BxHIftqCSada3xad0u_NOdVAvasdwfxZ1Vr_bVc"; 
+/*
+*I dont remember how it gets triggered 
+*I think you have to run setWebhook first 
+*run https://api.telegram.org/bot<TG_API_TOKEN>/deleteWebhook then run setWebhook with the new web app url
+*/
+const DISCORD_ANNOUNCEMENTS_URL = '***';// webhook of the channel i want announcements to go to
+const DISCORD_PICTURES_URL = '***';//Webhook of the channel i want pictures to go to
+const TG_API_TOKEN = "***"; //ex: 0123456789:ABC
 const TG_API_URL = "https://api.telegram.org/bot" + TG_API_TOKEN;
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbySdjZr_adsadmsuMRh3A3sW5TwpnZpp5mOBg-PNp-lUyjXqrtJgqig/exec";
-//const CHAT_ID = "-100176513157156367";
+const WEB_APP_URL = "***"; // get it from "manage deployments"
+const CHAT_ID = "***";//ex: -1001002704487
 
 
 function setWebhook() {
@@ -45,11 +50,30 @@ function postMessageToDiscord(embed, channel) {
   var response = UrlFetchApp.fetch(channel, options);
 }
 
+
+function postFileToDiscord(link, channel) {
+  var file = UrlFetchApp.fetch(link).getBlob();
+
+  var channel = DISCORD_PICTURES_URL;
+  var payload = {
+    file: file
+  };
+  
+  var options = {
+    method: "post",
+    payload: payload,
+    muteHttpExceptions: true
+  };
+  Logger.log(options, null, 2);
+  var response = UrlFetchApp.fetch(channel, options);
+}
+
+
 function doPost(e) {
   var json = e.postData.contents;
   testLog(json);
   var contents = JSON.parse(json);
-//  if (contents.channel_post.chat.id == CHAT_ID){
+  if (contents.channel_post.chat.id == CHAT_ID){
     
     var channelPost = contents.channel_post;
     
@@ -67,8 +91,7 @@ function doPost(e) {
       var largestFileIndex = channelPost.photo.length - 1;
       var fileId = channelPost.photo[largestFileIndex].file_id;
       var fileLink = getImageLink(fileId);
-      var embed = buildNewScreenshotEmbed(fileLink);
-      postMessageToDiscord(embed, DISCORD_PICTURES_URL);
+      postFileToDiscord(fileLink, DISCORD_PICTURES_URL)
       testLog('new photo w/o caption'); 
       
     }
@@ -86,6 +109,6 @@ function doPost(e) {
       postMessageToDiscord(embed, DISCORD_ANNOUNCEMENTS_URL);
       testLog('new video');    
     } 
-  }
-//}
+ }
+}
 
